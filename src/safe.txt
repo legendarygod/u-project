@@ -1,0 +1,105 @@
+import React from 'react'
+import { Box, Button, FormControl, MenuItem, InputLabel, Select, TextField, CircularProgress, Input } from '@mui/material'
+import { useGlobalContext } from '../context'
+import styled from 'styled-components'
+import countries from '../json/countries.json'
+
+const Register = () => {
+    const {formDetails, handleChange, register} = useGlobalContext()
+    const avStO = countries.find((c) => c.country_name === formDetails.countryO)
+    const avStR = countries.find((c) => c.country_name === formDetails.countryR)
+    const stO = avStO?.states
+    const stR = avStR?.states
+    console.log(stO)
+    console.log(stR)
+    const countryElements = countries.map((country) => {
+        return <MenuItem value={country.country_name} key={country.country_id}>{country.country_name}</MenuItem>
+    })
+    const stateOElements = stO?.map((state) => {
+        return <MenuItem value={state.state_name} key={state.state_id}>{state.state_name}</MenuItem>
+    })
+    const stateRElements = stR?.map((state) => {
+        return <MenuItem value={state.state_name} key={state.state_id}>{state.state_name}</MenuItem>
+    })
+    return (
+        <Container>
+            <Form>
+                <Box mt={3} width='100%'>
+                    <FormControl size='small' fullWidth>
+                        <InputLabel>First Name</InputLabel>
+                        <Input name='firstName' type='text' value={formDetails.firstName} onChange={handleChange} {}/>
+                    </FormControl>
+                </Box>
+                <Box mt={3} width='100%'>
+                    <FormControl size='small' fullWidth>
+                        <InputLabel>Last Name</InputLabel>
+                        <Input name='lastName'type='text' value={formDetails.lastName} onChange={handleChange}/>
+                    </FormControl>
+                </Box>
+                <Box mt={3} width='100%'>
+                    <FormControl size='small' fullWidth>
+                        <InputLabel>Middle Name</InputLabel>
+                        <Input name='middleName' value={formDetails.middleName} onChange={handleChange}/>
+                    </FormControl>
+                </Box>
+                <Box mt={3} width='100%'>
+                    <FormControl size='small' fullWidth>
+                        <InputLabel>Country of Residence</InputLabel>
+                        <Select name="countryR" value={formDetails.countryR} onChange={handleChange}>
+                            {countryElements}
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box mt={3} width='100%'>
+                    <FormControl size='small' fullWidth>
+                        <InputLabel>State of Residence</InputLabel>
+                        <Select name="stateR" value={formDetails.stateR} onChange={handleChange}>
+                            {stateRElements}
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box mt={3} width='100%'>
+                    <FormControl size='small' fullWidth>
+                        <InputLabel>Country of Origin</InputLabel>
+                         <Select name="countryO" value={formDetails.countryO} onChange={handleChange}>
+                            {countryElements}
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box mt={3} width='100%'>
+                    <FormControl size='small' fullWidth>
+                        <InputLabel>State of Origin</InputLabel>
+                        <Select name="stateO" value={formDetails.stateO} onChange={handleChange}>
+                            {stateOElements}
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box mt={3} width='100%'>
+                    <FormControl size='small' fullWidth>
+                        <InputLabel>Field of Study</InputLabel>
+                        <Input name='fieldOfInterest' value={formDetails.fieldOfInterest} onChange={handleChange}/>
+                    </FormControl>
+                </Box>
+                <Box mt={3} width='100%'>
+                    <Button fullWidth variant='contained' type='submit'>
+                        Generate Questions
+                    </Button>
+                </Box>
+            </Form>
+        </Container>
+    )
+}
+
+const Container = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+`
+
+const Form = styled.form`
+    width: 80%;
+`
+
+export default Register

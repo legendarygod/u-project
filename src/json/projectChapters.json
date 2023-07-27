@@ -1,0 +1,8 @@
+[
+    {"name": "Introduction", "id": 1},
+    {"name": "Literary Review", "id": 2},
+    {"name": "Methodology and Experiments", "id": 3},
+    {"name": "Analysis", "id": 4},
+    {"name": "Conclusion", "id": 5},
+    {"name": "References", "id": 6}
+]

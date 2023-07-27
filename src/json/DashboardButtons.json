@@ -1,0 +1,7 @@
+[
+    {"name": "Projects", "id": 1},
+    {"name": "Affiliated Institutions", "id": 2},
+    {"name": "Following", "id": 3},
+    {"name": "Followers", "id": 4},
+    {"name": "Connect", "id": 5}
+]
